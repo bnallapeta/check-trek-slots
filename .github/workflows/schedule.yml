@@ -1,0 +1,17 @@
+name: Check Slot Availability
+
+on:
+  schedule:
+    - cron: '*/60 * * * *'  # Run every 60 minutes
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run script
+      run: bash check_slots.sh
+
