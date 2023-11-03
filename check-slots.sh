@@ -12,8 +12,12 @@ echo "$TIME: Slots available: $SLOTS"
 # Append the time and number of available slots to a file
 echo "$TIME: Slots available: $SLOTS" >> slots_log.txt
 
+# Send a notification on every run
+curl -d "Script run at $TIME. Slots available: $SLOTS." ntfy.sh/trekcheckslots
+
 if (( SLOTS < 50 )); then
   echo "$TIME: Slots less than 50!" >> slots_log.txt
-  # Add your notification code here
+  
+  curl -d "Slots are now below 50: $SLOTS slots remaining as of $TIME." ntfy.sh/trekcheckslots
 fi
 
